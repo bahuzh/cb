@@ -3,7 +3,7 @@ make build
 bin/amd64
 cp httpsrv  /xxx/ 
 //编写 Dockerfile 将模块二作业编写的 httpserver 容器化
-docker build -t bahuzh/httpsrv:v1.1 .
+docker build --platform amd64 -t bahuzh/httpsrv:v1.1 .
 docker images
 
 //将镜像推送至 docker 官方镜像仓库
