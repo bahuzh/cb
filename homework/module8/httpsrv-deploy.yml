@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpsrv
+spec:
+  # 副本数
+  replicas: 2
+  selector:
+    matchLabels:
+      app: httpsrv
+  # 更新策略
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: httpsrv
+    spec:
+      # 10秒后，发送SIGKILL
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: httpsrv
+          image: bahuzh/httpsrv:v1.1
+          imagePullPolicy: IfNotPresent
+          # 资源需求和 QoS 保证
+          resources:
+            limits:
+              memory: 1Gi
+              cpu: 1
+            requests:
+              memory: 100Mi
+              cpu: 500m
+          # 探活
+          livenessProbe: 
+            failureThreshold: 3  
+            httpGet:
+              path: /healthz
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 3
+            successThreshold: 1
+            timeoutSeconds: 2
+          # 优雅启动，就绪状态检查
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 3
+            successThreshold: 1
+            timeoutSeconds: 2
+
