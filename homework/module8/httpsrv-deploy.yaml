@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: httpsrv
+  namespace: prod
 spec:
   # 副本数
   replicas: 2

@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: httpsrv-ingress
+  namespace: prod
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+    - hosts:
+        - "*.chaobang.org"
+      secretName: chaobang-tls
+  rules:
+    - host: httpsrv.chaobang.org
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: httpsrv
+                port:
+                  number: 80
