@@ -5,10 +5,11 @@ metadata:
   namespace: prod
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: letsencrypt-dns01
 spec:
   tls:
     - hosts:
-        - "*.chaobang.org"
+        - "httpsrv.chaobang.org"
       secretName: chaobang-tls
   rules:
     - host: httpsrv.chaobang.org
