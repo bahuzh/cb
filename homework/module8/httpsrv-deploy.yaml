@@ -26,6 +26,8 @@ spec:
         - name: httpsrv
           image: bahuzh/httpsrv:v1.1
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
           # 资源需求和 QoS 保证
           resources:
             limits:
