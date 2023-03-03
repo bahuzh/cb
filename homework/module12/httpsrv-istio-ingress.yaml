@@ -1,0 +1,37 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: httpsrv-ingress
+  namespace: prod
+spec:
+  gateways:
+    - httpsrv-ingress
+  hosts:
+    - httpsrv.chaobang.org
+  http:
+    - match:
+        - port: 443
+      route:
+        - destination:
+            host: httpsrv
+            port:
+              number: 80
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: httpsrv-ingress
+  namespace: prod
+spec:
+  selector:
+    istio: ingress
+  servers:
+    - hosts:
+        - httpsrv.chaobang.org
+      port:
+        name: https
+        number: 443
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: httpsrv.chaobang.org-tls

@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: httpsrv.chaobang.org
+  namespace: istio-system #一定要放到istio-system名称空间
+spec:
+  dnsNames:
+  - httpsrv.chaobang.org # 要签发证书的域名
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-dns01 # 引用 ClusterIssuer，指示采用 dns01 方式进行校验
+  secretName: httpsrv.chaobang.org-tls # 最终签发出来的证书会保存在这个 Secret 里面
