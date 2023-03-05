@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: httpsrv.chaobang.org
-  namespace: istio-system #一定要放到istio-system名称空间
+  namespace: istio-ingress  #一定要放到istio网关相同的名称空间
 spec:
   dnsNames:
   - httpsrv.chaobang.org # 要签发证书的域名
