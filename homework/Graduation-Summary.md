@@ -13,7 +13,7 @@
 - 在掌握核心技能方面，我感觉自己有稳步进步。
   - golang的基本语法，docker镜像的封装。
   - 创建Deployment、ConfigMap、Service，并考虑到了容器健康（避免/bin/sh启动容器，优雅退出可使用tini），自动扩缩容，亲和性等方面。
-  - 当流量进来时，使用istio进行分发和灰度，通过PeerAuthentication/PeerAuthentication（前者用于服务之间的身份验证，比如强制mtls，确保服务之间建立的通信是安全的；后者用于请求身份验证，在确保请求是来自合法身份），AuthorizationPolicy对象进行认证，鉴权。
+  - 当流量进来时，使用istio进行分发和灰度，通过PeerAuthentication/RequestAuthentication（前者用于服务之间的身份验证，比如强制mtls，确保服务之间建立的通信是安全的；后者用于请求身份验证，在确保请求是来自合法身份），AuthorizationPolicy对象进行认证，鉴权。
   - 学会了使用helm部署应用（修改values配置文件比较麻烦），能看懂一些基本的模版文件。
   - 学会了使用loki查看日志，配置grafana面板。
 
