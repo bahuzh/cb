@@ -10,7 +10,7 @@ import (
 
 func header(w http.ResponseWriter, r *http.Request) {
 	//读取当前系统的环境变量中的 VERSION 配置，并写入 response header
-	os.Setenv("VERSION", "cb version 1.1")
+	os.Setenv("VERSION", "cb version 1.2")
 	name := os.Getenv("VERSION")
 	fmt.Fprintln(w, name, "\n---------")
 	//接收客户端 request，并将 request 中带的 header 写入 response header
