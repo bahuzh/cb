@@ -19,7 +19,8 @@ func header(w http.ResponseWriter, r *http.Request) {
 	}
 	//Server 端记录访问日志包括客户端 IP，HTTP 返回码，输出到 server 端的标准输出
 	httpCode := http.StatusOK
-	remoteIp := r.RemoteAddr
+	//remoteIp := r.RemoteAddr
+	remoteIp := r.Header.Get("X-Real-Ip")
 	log.Println("访问IP", remoteIp, "HTTP状态码", httpCode)
 }
 
